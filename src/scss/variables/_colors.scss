@@ -1,0 +1,41 @@
+$light-tp: rgba(255, 255, 255, 0.15);
+$dark-tp: rgba(0, 0, 0, 0.15);
+
+//Colors from huemint
+// Lighte palette
+$light-bg-500: hsl(0, 0%, 100%);
+$light-text-main-500: hsl(257, 78%, 53%);
+$light-text-accent-500: hsl(181, 100%, 77%);
+
+// Dark palette
+$dark-bg-500: hsl(289, 36%, 15%);
+$dark-text-main-500: hsl(48, 81%, 85%);
+$dark-text-accent-500: hsl(46, 14%, 34%);
+
+$colors-light: (
+  bg-contrast: $dark-tp,
+  bg-500: $light-bg-500,
+  text-main-500: $light-text-main-500,
+  text-accent-500: $light-text-accent-500,
+);
+
+$colors-dark: (
+  bg-contrast: $light-tp,
+  bg-500: $dark-bg-500,
+  text-main-500: $dark-text-main-500,
+  text-accent-500: $dark-text-accent-500,
+);
+
+[color-scheme="light"] {
+  @each $name, $color in $colors-light {
+    --#{$name}: #{$color};
+  }
+}
+
+[color-scheme="dark"] {
+  @each $name, $color in $colors-dark {
+    --#{$name}: #{$color};
+  }
+}
+
+

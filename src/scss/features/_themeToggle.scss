@@ -1,0 +1,85 @@
+@use "../variables" as *;
+
+$spacing-unit: 0.5rem;
+$transition-time: 200ms;
+
+button {
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.c-theme {
+  $width: $spacing-unit * 6;
+  background: transparent;
+  cursor: pointer;
+  width: $width;
+  position: relative;
+  padding: 0;
+  transition: all $transition-time;
+  &__track {
+    background: getColor(bg-secondary-200);
+    height: $spacing-unit * 2;
+    width: 100%;
+    border-radius: 9999px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all $transition-time;
+  }
+  &__knob {
+    $size: calc($width / 2);
+    background: getColor(bg-primary-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+
+    transform: translateY(-50%);
+    transition: transform $transition-time, background $transition-time;
+  }
+  &__icon {
+    $size: $spacing-unit * 2;
+    fill: getColor(text-primary-300);
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__icon-wrapper {
+    position: relative;
+    transition: transform $transition-time;
+    &--light {
+      transform: scaleX(1) scaleY(1) rotate(0deg);
+    }
+    &--dark {
+      transform: scaleX(0) scaleY(0) rotate(90deg);
+    }
+  }
+  &--active {
+    .c-theme__knob {
+      transform: translate(calc($width / 2), -50%);
+    }
+    .c-theme__icon-wrapper {
+      &--light {
+        transform: scaleX(0) scaleY(0) rotate(90deg);
+      }
+      &--dark {
+        transform: scaleX(1) scaleY(1) rotate(0deg);
+      }
+    }
+  }
+  &--is-animating {
+    .c-theme__icon-wrapper {
+      transform: scaleX(0) scaleY(0) rotate(-90deg);
+    }
+  }
+}
