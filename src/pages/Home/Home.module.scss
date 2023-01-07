@@ -1,0 +1,11 @@
+@use "../../scss/variables/" as *;
+
+.home {
+  height: 100vh;
+  padding: 5em 1em 0;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+  gap: 2rem;
+}

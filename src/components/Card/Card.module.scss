@@ -1,0 +1,35 @@
+@use "../../scss/variables/" as *;
+
+.container{
+    background-color: var(--bg);
+    height:300px;
+    border-radius: 15px;
+    box-shadow:var(--bg-contrast) 0px 4px 12px;
+    display:flex;
+    flex-direction:column;
+
+    .city{
+        font-size: 1.5rem;
+    }
+    .weather_icon{
+
+    }
+    .temp_current{
+
+    }
+    .condition{
+
+    }
+    .flex_between{
+        display:flex;
+        justify-content:space-between;
+
+    }
+    .temp_min{
+        
+    }
+    .temp_max{
+        
+    }
+
+}
