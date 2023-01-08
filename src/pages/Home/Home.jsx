@@ -3,6 +3,7 @@
 // data for development
 import demoData from "./data.json";
 import Card from "../../components/Card/Card";
+import Search from "../../components/Card/Search";
 import styles from "./Home.module.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -13,7 +14,7 @@ import axios from "axios";
 // JSON.parse(demoData)
 const Home = () => {
   const [data, setData] = useState(null);
-  console.log(demoData);
+  // console.log(demoData);
   // useEffect(() => {
   //   axios.get(baseUrl).then((res) => {
   //     console.log(res.data);
@@ -23,6 +24,10 @@ const Home = () => {
 
   return (
     <main className={styles.home}>
+      <Search />
+      <Card data={demoData} />
+      <Card data={demoData} />
+      <Card data={demoData} />
       <Card data={demoData} />
       <Card data={demoData} />
       <Card data={demoData} />

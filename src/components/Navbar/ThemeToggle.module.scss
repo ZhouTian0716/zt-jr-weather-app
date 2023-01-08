@@ -1,16 +1,9 @@
-@use "../variables" as *;
+@use "../../scss/variables/" as *;
 
 $spacing-unit: 0.5rem;
 $transition-time: 200ms;
 
-button {
-  &:focus,
-  &:active {
-    outline: none;
-  }
-}
-
-.c-theme {
+.c_theme {
   $width: $spacing-unit * 6;
   background: transparent;
   cursor: pointer;
@@ -19,7 +12,7 @@ button {
   padding: 0;
   transition: all $transition-time;
   &__track {
-    background: getColor(bg-secondary-200);
+    background: var(--bg-contrast);
     height: $spacing-unit * 2;
     width: 100%;
     border-radius: 9999px;
@@ -31,7 +24,7 @@ button {
   }
   &__knob {
     $size: calc($width / 2);
-    background: getColor(bg-primary-400);
+    background: var(--text-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,13 +33,12 @@ button {
     border-radius: 50%;
     position: absolute;
     left: 0;
-
     transform: translateY(-50%);
-    transition: transform $transition-time, background $transition-time;
+    transition: transform $transition-time;
   }
   &__icon {
     $size: $spacing-unit * 2;
-    fill: getColor(text-primary-300);
+    fill: var(--bg);
     width: $size;
     height: $size;
     position: absolute;
@@ -54,32 +46,27 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  &__icon-wrapper {
+  &__icon_wrapper {
     position: relative;
     transition: transform $transition-time;
-    &--light {
+    &__light {
       transform: scaleX(1) scaleY(1) rotate(0deg);
     }
-    &--dark {
+    &__dark {
       transform: scaleX(0) scaleY(0) rotate(90deg);
     }
   }
-  &--active {
-    .c-theme__knob {
+  &__active {
+    .c_theme__knob {
       transform: translate(calc($width / 2), -50%);
     }
-    .c-theme__icon-wrapper {
-      &--light {
+    .c_theme__icon_wrapper {
+      &__light {
         transform: scaleX(0) scaleY(0) rotate(90deg);
       }
-      &--dark {
+      &__dark {
         transform: scaleX(1) scaleY(1) rotate(0deg);
       }
-    }
-  }
-  &--is-animating {
-    .c-theme__icon-wrapper {
-      transform: scaleX(0) scaleY(0) rotate(-90deg);
     }
   }
 }
