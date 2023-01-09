@@ -23,7 +23,11 @@ export const fetchCities = createAsyncThunk(
 export const searchSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSearch: (state, action) => {
+      state.cities=[];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCities.pending, (state, action) => {
@@ -43,7 +47,7 @@ export const searchSlice = createSlice({
 });
 
 // Action creators are generated for each case of reducers
-// export const { createOne, deleteOne } = postsSlice.actions;
+export const { clearSearch } = searchSlice.actions;
 
 // This is easier for component to call useSelector, if our state shape change in the future
 export const getSearchResults = (state) => state.search.cities;

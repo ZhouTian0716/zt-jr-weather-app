@@ -1,0 +1,22 @@
+@use "../../scss/variables/" as *;
+
+.container {
+  .tab {
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--bg-contrast);
+    }
+    &__city {
+      font-weight: bold;
+    }
+    &__region {
+      font-weight: lighter;
+    }
+    &__country {
+      font-weight: bold;
+    }
+  }
+}

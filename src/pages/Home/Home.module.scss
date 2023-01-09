@@ -1,17 +1,23 @@
 @use "../../scss/variables/" as *;
 
 .home {
-  // height: 100vh;
-  padding: 5em 1em 0;
-  background-color: var(--bg);
-  display: grid;
-  grid-auto-flow: column;
-  overflow-x: scroll;
-
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  // &::-webkit-scrollbar {
-  //   height: 5px;
-  // }
+
+  .container_sliders {
+    // height: 100vh;
+    padding: 0 2em;
+    background-color: var(--bg);
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+
+    gap: 2rem;
+    // &::-webkit-scrollbar {
+    //   height: 5px;
+    // }
+  }
 }
 
 // display: grid;

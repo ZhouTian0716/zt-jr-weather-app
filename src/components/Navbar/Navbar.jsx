@@ -1,24 +1,31 @@
-import styles from "./Navbar.module.scss";
 import ThemeToggle from "./ThemeToggle";
-import { HiMenuAlt2, HiX } from "react-icons/hi";
+import { HiOutlineSearch } from "react-icons/hi";
 import { useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuToggleHandler = () => setIsMenuOpen((prev) => !prev);
+// Redux
+import { useDispatch } from "react-redux";
+import { searchModalToggle } from "../../redux/reducers/displaySlice";
 
+// styles
+import styles from "./Navbar.module.scss";
+const { navbar, search__btn, title } = styles;
+
+const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
-    <nav className={styles.navbar}>
-      {isMenuOpen ? (
-        <HiX className={styles.menu__btn} onClick={menuToggleHandler} />
-      ) : (
-        <HiMenuAlt2 className={styles.menu__btn} onClick={menuToggleHandler} />
-      )}
+    <nav className={navbar}>
+      <HiOutlineSearch
+        className={search__btn}
+        onClick={() => dispatch(searchModalToggle())}
+      />
 
-      <Link to='/' className={styles.title}>World Weather</Link>
+      <Link to="/" className={title}>
+        World Weather
+      </Link>
       <ThemeToggle />
     </nav>
   );

@@ -5,20 +5,26 @@
 }
 
 .navbar {
-  position:fixed;
-  width:100%;
+  width: 100%;
   padding: 1em 2em;
   background-color: var(--bg);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow:var(--bg-contrast) 0px 4px 12px;
+  border-radius: 5px;
+  box-shadow: var(--bg-contrast) 0px 4px 12px;
   .title {
     font-size: 1.5em;
     cursor: pointer;
   }
-  .menu__btn {
-    font-size: 1.5em;
+  .search__btn {
+    font-size: 2em;
+    padding: 0.1em;
+    border-radius: 50%;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--bg-contrast);
+    }
   }
 }

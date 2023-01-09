@@ -1,0 +1,9 @@
+@use "../../scss/variables/" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-contrast);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+}
