@@ -4,7 +4,7 @@ import { API } from "../../api/index";
 import { getIP } from "../../api/getIP";
 
 const initialState = {
-  local_weather: { current: null, forecast: null },
+  local_weather: null,
   city_new_search: null,
   cities_user_saved: [],
   status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
@@ -13,7 +13,7 @@ const initialState = {
 
 const IP_Search_Route = `/ip.json?key=${import.meta.env.VITE_WEATHER_API_KEY}`;
 
-const Weather_Current_Route = `/current.json?key=${
+const Route_Local_Weather = `/forecast.json?key=${
   import.meta.env.VITE_WEATHER_API_KEY
 }`;
 
@@ -30,11 +30,15 @@ export const fetchLocalWeather = createAsyncThunk(
     const {
       data: { lat: userLat, lon: userLon },
     } = resIP;
-    const resCurrentWeather = await API.get(
-      `${Weather_Current_Route}&q=${userLat},${userLon}`
+    // step 2: construct weather fetching options in url
+    const days = 7;
+    const airQuality = "yes";
+    const alerts = "yes";
+    const resWeather = await API.get(
+      `${Route_Local_Weather}&q=${userLat},${userLon}&days=${days}&aqi=${airQuality}&alerts=${alerts}`
     );
     // console.log(resCurrentWeather.data);
-    return resCurrentWeather.data;
+    return resWeather.data;
     // so many more properties
 
     // const response = await API.get(`${Search_Route}&q=${keywords}`);
@@ -65,17 +69,20 @@ export const weatherSlice = createSlice({
         state.status = "succeeded";
         // const loadedPosts = action.payload;
 
-        state.local_weather.current = action.payload;
+        state.local_weather = action.payload;
       })
       .addCase(fetchLocalWeather.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error;
+        state.error = action.error.message;
       });
   },
 });
 
 // exported for easier useSelector call from components
 export const getSelectedCity = (state) => state.weather.city_new_search;
+export const getLocalWeather = (state) => state.weather.local_weather;
+export const getFetchStatus = (state) => state.weather.status;
+export const getFetchError = (state) => state.weather.error;
 
 // Action creators are generated for each case reducer function
 export const { setSelectedCity } = weatherSlice.actions;

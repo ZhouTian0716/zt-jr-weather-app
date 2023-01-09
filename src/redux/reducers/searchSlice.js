@@ -8,7 +8,7 @@ const Search_Route = `/search.json?key=${API_KEY}`;
 
 const initialState = {
   cities: [],
-  status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle", //'idle' | 'fetching' | 'succeeded' | 'failed'
   error: null,
 };
 
