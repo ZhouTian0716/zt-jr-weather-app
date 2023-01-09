@@ -8,7 +8,7 @@ import {
   clearSearch,
 } from "../../redux/reducers/searchSlice";
 import { searchModalToggle } from "../../redux/reducers/displaySlice";
-import { setSelectedCity } from "../../redux/reducers/weatherSlice";
+import { setSelectedCity,fetchWeatherByCity } from "../../redux/reducers/weatherSlice";
 
 // Styles
 import styles from "./Tabs.module.scss";
@@ -24,10 +24,14 @@ const Tabs = () => {
 
   const dispatch = useDispatch();
 
-  const handleModalClose = () => {
+
+
+  const onSearchByCity=(city)=>{
     dispatch(clearSearch());
     dispatch(searchModalToggle());
-  };
+    dispatch(setSelectedCity(city));
+    dispatch(fetchWeatherByCity(city));
+  }
 
   return (
     <div className={container}>
@@ -36,10 +40,7 @@ const Tabs = () => {
           <p
             className={tab}
             key={i}
-            onClick={() => {
-              handleModalClose();
-              dispatch(setSelectedCity(city));
-            }}
+            onClick={()=>onSearchByCity(city)}
           >
             <span className={tab__city}>{city.name},</span>
             <span className={tab__region}>{city.region},</span>
@@ -49,7 +50,7 @@ const Tabs = () => {
       ) : (
         <p>City Not Found</p>
       )}
-      {/* {console.log("tabs rerender")} */}
+      
     </div>
   );
 };

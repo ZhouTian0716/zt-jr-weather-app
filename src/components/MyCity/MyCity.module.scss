@@ -10,6 +10,7 @@
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2fr 1fr;
   grid-template-areas: "a b c" "d d c";
   gap: 1rem;
   position: relative;

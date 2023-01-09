@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   getLocalWeather,
+  getWeatherByCity,
   getFetchStatus,
   getFetchError,
 } from "../../redux/reducers/weatherSlice";
@@ -21,6 +22,7 @@ const {
 
 const MyCity = () => {
   const localWeather = useSelector(getLocalWeather);
+  const weatherBySelectedCity = useSelector(getWeatherByCity);
   const loadingStatus = useSelector(getFetchStatus);
   const error = useSelector(getFetchError);
 
@@ -28,19 +30,20 @@ const MyCity = () => {
   if (loadingStatus === "fetching") {
     content = <p className={message}>"Loading..."</p>;
   } else if (loadingStatus === "succeeded") {
+    const weatherData = weatherBySelectedCity || localWeather;
     // destructure data a little bit
-    const daysData = localWeather.forecast.forecastday;
+    const daysData = weatherData.forecast.forecastday;
     const hoursData = daysData[0].hour;
 
     content = (
       <>
         <div className={main_data}>
-          <h3>{localWeather.location.name}</h3>
+          <h3>{weatherData.location.name}</h3>
           <p>
-            <span>{localWeather.location.country}</span>
+            <span>{weatherData.location.country}</span>
           </p>
-          <h2>{localWeather.current.temp_c}°</h2>
-          <p>{localWeather.current.condition.text}</p>
+          <h2>{weatherData.current.temp_c}°</h2>
+          <p>{weatherData.current.condition.text}</p>
         </div>
         <div className={secondary_data}></div>
         <div className={days_data}>
