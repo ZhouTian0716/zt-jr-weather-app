@@ -27,7 +27,19 @@
     background-image: url("../../assets/svg/light.jpg");
     grid-area: a;
     align-items: center;
+    position:relative;
     @include wrapper-style;
+    .save_btn{
+      color:var(--bg-contrast);
+      font-size: 2rem;
+      top:2%;
+      left:2%;;
+      position:absolute;
+      cursor: pointer;
+      &.active{
+        color:var(--text-main);
+      }
+    }
     p {
       text-align: center;
       line-height: 1.5;
