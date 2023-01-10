@@ -31,6 +31,7 @@ const Tabs = () => {
     dispatch(searchModalToggle());
     dispatch(setSelectedCity(city));
     dispatch(fetchWeatherByCity(city));
+    //
   }
 
   return (

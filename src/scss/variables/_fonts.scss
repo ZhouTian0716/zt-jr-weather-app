@@ -1,30 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bitter:wght@200;300;400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300;400;500;600;700&display=swap');
+// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap");
 
-$font-a: "Open Sans", sans-serif;
+$font-a: "Mulish", sans-serif;
 $font-b: "Bitter", sans-serif;
-$font-c: "Montserrat", sans-serif;
-$font-d: "Dancing Script", sans-serif;
-$font-e: "Merienda", sans-serif;
 
 $fonts: (
   a: $font-a,
   b: $font-b,
-  c: $font-c,
-  hand-a:$font-d,
-  hand-b:$font-e,
 );
 
 :root {
   @each $name, $font in $fonts {
-    --font-#{$name}: #{$font};
+    --#{$name}: #{$font};
   }
-}
-
-//creating a function to get color instead of using css varible
-@function getFont($font-name) {
-  @return var(--font-#{$font-name});
 }
