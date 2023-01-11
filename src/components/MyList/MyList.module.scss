@@ -1,0 +1,28 @@
+@use "../../scss/variables/" as *;
+
+.slider_cities {
+  // background-color: var(--bg);
+  padding: 0 2em;
+  position: relatived;
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: scroll;
+  gap: 2rem;
+  padding: 1rem;
+  &::-webkit-scrollbar {
+    padding-top: 0.5rem;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg-contrast);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--text-main);
+  }
+  .message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

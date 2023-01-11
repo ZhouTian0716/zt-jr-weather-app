@@ -1,13 +1,14 @@
 @use "../../scss/variables/" as *;
+@use "../../scss/features/" as *;
 
-@mixin wrapper-style {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border-radius: 10px;
-  box-shadow: var(--bg-contrast) 0px 4px 12px;
-}
+// @mixin wrapper-style {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   padding: 0.5rem;
+//   border-radius: 10px;
+//   box-shadow: var(--bg-contrast) 0px 4px 12px;
+// }
 
 .container {
   h3 {
@@ -51,6 +52,7 @@
     h2 {
       font-size: 3rem;
       text-align: center;
+      position:relative;
       &::after {
         content: "°";
         font-size: 0.6em;

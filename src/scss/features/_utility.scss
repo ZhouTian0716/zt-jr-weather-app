@@ -10,36 +10,4 @@
   gap: var(--gap, 1rem);
 }
 
-.btn__one {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid getColor(text-primary-600);
-  border-radius: 5px;
-  transition: all 100ms ease-in-out;
-  font-family: getFont(c);
-  font-weight: 600;
-  color: getColor(text-primary-50);
-  background-color: getColor(text-primary-600);
-  cursor: pointer;
-  &:hover {
-    // color: getColor(bg-primary-500);
-    background-color: getColor(text-primary-500);
-  }
-}
-
-.icon_btn:hover {
-  color: getColor(text-primary-900);
-}
-
-.section__title {
-  text-align: center;
-  color: getColor(text-primary-700);
-  text-transform: uppercase;
-  font-family: getFont(b);
-  font-size: clamp(22px, 3vw, 36rem);
-  &::before {
-    display: block;
-    color: getColor(text-secondary-700);
-    font-family: getFont(hand-a);
-  }
-}
 

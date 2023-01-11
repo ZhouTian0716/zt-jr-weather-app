@@ -5,27 +5,6 @@
   flex-direction: column;
   gap: 2rem;
 
-  .container_sliders {
-    // height: 100vh;
-    padding: 0 2em;
-    background-color: var(--bg);
-    display: grid;
-    grid-auto-flow: column;
-    overflow-x: scroll;
-
-    gap: 2rem;
-    // &::-webkit-scrollbar {
-    //   height: 5px;
-    // }
-  }
+  
 }
 
-// display: grid;
-//     gap: var(--spacer, 1rem);
-//     margin: var(--spacer, 1rem);
-//     padding: var(--spacer, 1rem) 0;
-//     grid-auto-flow: column;
-//     overflow-x: scroll;
-//     &::-webkit-scrollbar {
-//       height: 5px;
-//     }

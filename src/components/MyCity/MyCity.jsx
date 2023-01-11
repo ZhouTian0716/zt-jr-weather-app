@@ -2,7 +2,6 @@ import { HiStar } from "react-icons/hi";
 import { useState } from "react";
 // Redux Hooks
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   getLocalWeather,
   getWeatherByCity,
@@ -13,9 +12,9 @@ import {
 import styles from "./MyCity.module.scss";
 const {
   container,
-  main_data,
   save_btn,
   active,
+  main_data,
   desc,
   temp_range,
   min,

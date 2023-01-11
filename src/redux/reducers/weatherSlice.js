@@ -49,6 +49,7 @@ export const fetchLocalWeather = createAsyncThunk(
 export const fetchWeatherByCity = createAsyncThunk(
   "search/fetchWeatherByCity",
   async (payload) => {
+    // NOTE: some times you might get a payload.Lat and payload.Lon
     const resWeather = await API.get(
       `${Route_Forecast_Weather}&q=${payload.lat},${payload.lon}&days=${days}&aqi=${airQuality}&alerts=${alerts}`
     );
@@ -61,17 +62,13 @@ export const fetchWeatherBySavedCities = createAsyncThunk(
   async (payload) => {
     let weatherArray = [];
     let resWeather;
-    // console.log(payload)
-    await payload.forEach(async (e) => {
+    const reqArray = payload.map(async (e) => {
       resWeather = await API.get(
         `${Route_Forecast_Weather}&q=${e.lat},${e.lon}&days=${days}&aqi=${airQuality}&alerts=${alerts}`
       );
-      // console.log(resWeather.data)
-      // weatherArray.push(resWeather.data);
-      weatherArray = [...weatherArray, resWeather.data];
-      console.log(weatherArray);
+      weatherArray.push(resWeather.data);
     });
-    console.log(weatherArray);
+    await Promise.all(reqArray);
     return weatherArray;
   }
 );
@@ -131,6 +128,8 @@ export const getSelectedCity = (state) => state.weather.city_new_search;
 export const getLocalWeather = (state) => state.weather.local_weather;
 export const getWeatherByCity = (state) => state.weather.weather_selected_city;
 export const getFetchStatus = (state) => state.weather.status.local_weather;
+export const getMyListWeather = (state) =>
+  state.weather.weather_user_saved;
 export const getListFetchStatus = (state) =>
   state.weather.status.cities_weather;
 export const getFetchError = (state) => state.weather.error;
