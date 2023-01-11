@@ -7,6 +7,9 @@ import {
   getWeatherByCity,
   getFetchStatus,
   getFetchError,
+  fetchWeatherBySavedCities,
+  saveWeatherByCity,
+  unsaveWeatherByCity,
 } from "../../redux/reducers/weatherSlice";
 
 import styles from "./MyCity.module.scss";
@@ -40,13 +43,18 @@ const MyCity = () => {
   const loadingStatus = useSelector(getFetchStatus);
   const error = useSelector(getFetchError);
 
+  const dispatch = useDispatch();
+
   const onToggleSave = () => {
     setCitySaved((prev) => !prev);
     // Saving this city into localStorage "saved-cities"
     // STEP 1 : Preparing new city
-    const cityLocation =
-      weatherBySelectedCity?.location || localWeather?.location;
-    // const cityLocationData = JSON.stringify(cityLocationObj);
+    const cityLocation = {
+      name: weatherBySelectedCity?.location.name || localWeather?.location.name,
+      lat: weatherBySelectedCity?.location.lat || localWeather?.location.lat,
+      lon: weatherBySelectedCity?.location.lon || localWeather?.location.lon,
+    };
+    const cityWeather = weatherBySelectedCity || localWeather;
     // STEP 2: get the current storage content, check if duplicated
     let currentSavedCities = JSON.parse(
       localStorage.getItem("saved-cities") || "[]"
@@ -55,13 +63,19 @@ const MyCity = () => {
       (e, i) => JSON.stringify(e) !== JSON.stringify(cityLocation)
     );
     if (isNew) {
+      // Task one: locaclStorage update for consistancy on page reload
       currentSavedCities.push(cityLocation);
       localStorage.setItem("saved-cities", JSON.stringify(currentSavedCities));
+      // Task two: Redux state update for UI response
+      dispatch(saveWeatherByCity(cityWeather));
     } else {
+      // Task one: locaclStorage update for consistancy on page reload
       const updated = currentSavedCities.filter(
         (e) => JSON.stringify(e) !== JSON.stringify(cityLocation)
       );
       localStorage.setItem("saved-cities", JSON.stringify(updated));
+      // Task two: Redux state update for UI response
+      dispatch(unsaveWeatherByCity(cityLocation));
     }
   };
 

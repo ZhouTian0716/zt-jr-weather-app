@@ -36,7 +36,6 @@ const Search = () => {
         />
         <HiX className={clear__btn} onClick={handleClear} />
       </div>
-
       <Tabs />
     </div>
   );

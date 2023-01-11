@@ -9,7 +9,6 @@ import {
 
 const Card = ({ data }) => {
   const city = data.location;
-  // console.log(city);
 
   const dispatch = useDispatch();
   return (

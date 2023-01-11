@@ -83,7 +83,17 @@ export const weatherSlice = createSlice({
     setSavedCities: (state, action) => {
       state.cities_user_saved = action.payload;
     },
+    saveWeatherByCity: (state, action) => {
+      state.weather_user_saved = [...state.weather_user_saved, action.payload];
+    },
     // more
+    unsaveWeatherByCity: (state, action) => {
+      state.weather_user_saved = state.weather_user_saved.filter(
+        (e) =>
+          e.location.lat !== action.payload.lat &&
+          e.location.lon !== action.payload.lon
+      );
+    },
   },
   extraReducers(builder) {
     builder
@@ -128,13 +138,17 @@ export const getSelectedCity = (state) => state.weather.city_new_search;
 export const getLocalWeather = (state) => state.weather.local_weather;
 export const getWeatherByCity = (state) => state.weather.weather_selected_city;
 export const getFetchStatus = (state) => state.weather.status.local_weather;
-export const getMyListWeather = (state) =>
-  state.weather.weather_user_saved;
+export const getMyListWeather = (state) => state.weather.weather_user_saved;
 export const getListFetchStatus = (state) =>
   state.weather.status.cities_weather;
 export const getFetchError = (state) => state.weather.error;
 
 // Action creators are generated for each case reducer function
-export const { setSelectedCity, setSavedCities } = weatherSlice.actions;
+export const {
+  setSelectedCity,
+  setSavedCities,
+  saveWeatherByCity,
+  unsaveWeatherByCity,
+} = weatherSlice.actions;
 
 export default weatherSlice.reducer;
