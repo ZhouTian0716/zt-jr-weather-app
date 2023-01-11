@@ -17,8 +17,7 @@ import {
 store.dispatch(fetchLocalWeather());
 // STEP 2: Fetch saved cities
 const savedCities = JSON.parse(localStorage.getItem("saved-cities"));
-
-store.dispatch(fetchWeatherBySavedCities(savedCities));
+savedCities && store.dispatch(fetchWeatherBySavedCities(savedCities));
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

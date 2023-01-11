@@ -7,7 +7,7 @@ import { getIP } from "../../api/getIP";
 const initialState = {
   local_weather: null,
   cities_user_saved: null,
-  weather_user_saved: null,
+  weather_user_saved: [],
   city_new_search: null,
   weather_selected_city: null,
   status: { local_weather: "idle", cities_weather: "idle" }, //'idle' | 'loading' | 'succeeded' | 'failed'
@@ -84,7 +84,8 @@ export const weatherSlice = createSlice({
       state.cities_user_saved = action.payload;
     },
     saveWeatherByCity: (state, action) => {
-      state.weather_user_saved = [...state.weather_user_saved, action.payload];
+      // state.weather_user_saved = [...state.weather_user_saved, action.payload];
+      state.weather_user_saved.unshift(action.payload);
     },
     // more
     unsaveWeatherByCity: (state, action) => {

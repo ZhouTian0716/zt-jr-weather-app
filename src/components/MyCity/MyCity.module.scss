@@ -1,26 +1,24 @@
 @use "../../scss/variables/" as *;
 @use "../../scss/features/" as *;
 
-// @mixin wrapper-style {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   padding: 0.5rem;
-//   border-radius: 10px;
-//   box-shadow: var(--bg-contrast) 0px 4px 12px;
-// }
-
 .container {
   h3 {
     font-size: 1rem;
     text-align: center;
   }
   height: fit-content;
+  min-height: 30vh;
   display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr 1fr;
   grid-template-areas: "a b c" "a d d";
-  gap: 1rem;
+  @include media-mobile-lg {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "a" "d" "b" "c";
+  }
+
   position: relative;
 
   .main_data {
@@ -28,17 +26,17 @@
     background-image: url("../../assets/svg/light.jpg");
     grid-area: a;
     align-items: center;
-    position:relative;
+    position: relative;
     @include wrapper-style;
-    .save_btn{
-      color:var(--bg-contrast);
+    .save_btn {
+      color: var(--bg-contrast);
       font-size: 2rem;
-      top:2%;
-      left:2%;;
-      position:absolute;
+      top: 2%;
+      left: 2%;
+      position: absolute;
       cursor: pointer;
-      &.active{
-        color:var(--text-main);
+      &.active {
+        color: var(--text-main);
       }
     }
     p {
@@ -52,7 +50,7 @@
     h2 {
       font-size: 3rem;
       text-align: center;
-      position:relative;
+      position: relative;
       &::after {
         content: "°";
         font-size: 0.6em;
@@ -174,5 +172,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // margin:0 auto;
   }
 }

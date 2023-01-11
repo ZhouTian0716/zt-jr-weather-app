@@ -1,5 +1,5 @@
 import { HiStar } from "react-icons/hi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Redux Hooks
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -33,28 +33,50 @@ const {
 const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const MyCity = () => {
-  // useState for saving star ui style toggle
-  // default false on very first website visit
-  const [citySaved, setCitySaved] = useState(false);
+  const dispatch = useDispatch();
   // Theses useSelector for ui data rendering
-
   const localWeather = useSelector(getLocalWeather);
   const weatherBySelectedCity = useSelector(getWeatherByCity);
   const loadingStatus = useSelector(getFetchStatus);
   const error = useSelector(getFetchError);
+  // useState for saving star ui style toggle
+  // default false on very first website visit
+  const [citySaved, setCitySaved] = useState(false);
 
-  const dispatch = useDispatch();
+  // 👻👻👻👻👻
+  // Common needed variable
+  const cityLocation = {
+    name: weatherBySelectedCity?.location.name || localWeather?.location.name,
+    lat: weatherBySelectedCity?.location.lat || localWeather?.location.lat,
+    lon: weatherBySelectedCity?.location.lon || localWeather?.location.lon,
+  };
+  const cityWeather = weatherBySelectedCity || localWeather;
+  // 👻👻👻👻👻
+
+  // This useEffect to handle saving star change
+  useEffect(() => {
+    // Check if the selectedCity in current localStorage
+    // if in, star should be lighten
+    // if not, star should be dark
+    let currentSavedCities = JSON.parse(
+      localStorage.getItem("saved-cities") || "[]"
+    );
+    let exist = currentSavedCities.some(
+      (e, i) => JSON.stringify(e) === JSON.stringify(cityLocation)
+    );
+    if (exist) {
+      setCitySaved(true);
+     
+    } else {
+      setCitySaved(false);
+    }
+  }, [weatherBySelectedCity,localWeather]);
 
   const onToggleSave = () => {
     setCitySaved((prev) => !prev);
     // Saving this city into localStorage "saved-cities"
     // STEP 1 : Preparing new city
-    const cityLocation = {
-      name: weatherBySelectedCity?.location.name || localWeather?.location.name,
-      lat: weatherBySelectedCity?.location.lat || localWeather?.location.lat,
-      lon: weatherBySelectedCity?.location.lon || localWeather?.location.lon,
-    };
-    const cityWeather = weatherBySelectedCity || localWeather;
+
     // STEP 2: get the current storage content, check if duplicated
     let currentSavedCities = JSON.parse(
       localStorage.getItem("saved-cities") || "[]"
@@ -62,6 +84,7 @@ const MyCity = () => {
     let isNew = currentSavedCities.every(
       (e, i) => JSON.stringify(e) !== JSON.stringify(cityLocation)
     );
+    
     if (isNew) {
       // Task one: locaclStorage update for consistancy on page reload
       currentSavedCities.push(cityLocation);

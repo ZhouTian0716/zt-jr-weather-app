@@ -36,7 +36,7 @@ export const searchSlice = createSlice({
       .addCase(fetchCities.fulfilled, (state, action) => {
         state.status = "succeeded";
         const loadedCities = action.payload;
-        console.log(loadedCities);
+        // console.log(loadedCities);
         state.cities = loadedCities;
       })
       .addCase(fetchCities.rejected, (state, action) => {

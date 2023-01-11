@@ -21,7 +21,7 @@ const MyList = () => {
   let content;
   if (loadingStatus === "fetching") {
     content = <p className={message}>"Loading..."</p>;
-  } else if (loadingStatus === "succeeded") {
+  } else if (loadingStatus === "succeeded" || myListWeather) {
     content = myListWeather.map((e,i) => <Card key={i} data={e} />);
   } else if (loadingStatus === "failed") {
     content = <p className={message}>{error}</p>;
