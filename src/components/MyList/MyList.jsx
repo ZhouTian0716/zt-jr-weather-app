@@ -10,7 +10,7 @@ import {
 
 import styles from "./MyList.module.scss";
 
-const { list_title, list_notice,slider_cities, message } = styles;
+const { container,list_title, list_notice,slider_cities, message } = styles;
 
 const MyList = () => {
   const loadingStatus = useSelector(getListFetchStatus);
@@ -27,7 +27,7 @@ const MyList = () => {
     content = <p className={message}>{error}</p>;
   }
   return (
-    <div>
+    <div className={container}>
       {myListWeather.length > 0 ? (
         <h2 className={list_title}>My City List</h2>
       ) : (

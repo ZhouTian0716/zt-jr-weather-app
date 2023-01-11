@@ -14,6 +14,7 @@
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas: "a b d" "a c d" "a e e";
   @include media-mobile-lg {
+    // width:400px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-template-areas: "a a" "e e" "b c" "d d";
