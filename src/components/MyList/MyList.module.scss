@@ -1,7 +1,15 @@
 @use "../../scss/variables/" as *;
 
+.list_title {
+  text-align: center;
+}
+.list_notice {
+  text-align: center;
+  font-size: 1rem;
+}
 .slider_cities {
   // background-color: var(--bg);
+  min-height: 200px;
   padding: 0 2em;
   position: relatived;
   display: grid;

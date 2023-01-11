@@ -3,13 +3,13 @@
 
 .card {
   width: clamp(200px, 12vw, 250px);
-  height: 350px;
+  aspect-ratio: 0.8;
   align-items: center;
   @include wrapper-style;
   cursor: pointer;
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center;
   }
@@ -19,7 +19,7 @@
     line-height: 1.5;
   }
   h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
     position:relative;
     &::after {
@@ -29,7 +29,7 @@
     }
   }
   img {
-    width: 80px;
+    width: 50px;
     aspect-ratio: 1;
     display: block;
     margin: 0 auto;
@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     .min {
-      font-size: 2rem;
+      font-size: 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -59,7 +59,7 @@
       }
     }
     .max {
-      font-size: 2rem;
+      font-size: 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;

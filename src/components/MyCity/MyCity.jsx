@@ -22,7 +22,8 @@ const {
   temp_range,
   min,
   max,
-  secondary_data,
+  today_details,
+  today_forecast,
   days_data,
   hourly_data,
   container_sliders,
@@ -66,11 +67,10 @@ const MyCity = () => {
     );
     if (exist) {
       setCitySaved(true);
-     
     } else {
       setCitySaved(false);
     }
-  }, [weatherBySelectedCity,localWeather]);
+  }, [weatherBySelectedCity, localWeather]);
 
   const onToggleSave = () => {
     setCitySaved((prev) => !prev);
@@ -84,7 +84,7 @@ const MyCity = () => {
     let isNew = currentSavedCities.every(
       (e, i) => JSON.stringify(e) !== JSON.stringify(cityLocation)
     );
-    
+
     if (isNew) {
       // Task one: locaclStorage update for consistancy on page reload
       currentSavedCities.push(cityLocation);
@@ -141,7 +141,7 @@ const MyCity = () => {
             </span>
           </div>
         </div>
-        <div className={secondary_data}>
+        <div className={today_details}>
           <h3>Today Details</h3>
           <ul>
             <li>
@@ -161,6 +161,8 @@ const MyCity = () => {
               <span>{weatherData.current.feelslike_c}°</span>
             </li>
           </ul>
+        </div>
+        <div className={today_forecast}>
           <h3>Today Forecast</h3>
           <ul>
             <li>

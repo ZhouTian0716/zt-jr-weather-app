@@ -11,12 +11,12 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 2fr 1fr;
-  grid-template-areas: "a b c" "a d d";
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: "a b d" "a c d" "a e e";
   @include media-mobile-lg {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
-    grid-template-areas: "a" "d" "b" "c";
+    grid-template-areas: "a a" "e e" "b c" "d d";
   }
 
   position: relative;
@@ -115,13 +115,19 @@
       }
     }
   }
-  .secondary_data {
+  
+  .today_details {
     grid-area: b;
     @include wrapper-style;
     @include list-styles;
   }
-  .days_data {
+  .today_forecast {
     grid-area: c;
+    @include wrapper-style;
+    @include list-styles;
+  }
+  .days_data {
+    grid-area: d;
     @include wrapper-style;
     @include list-styles;
     ul {
@@ -137,7 +143,7 @@
     }
   }
   .hourly_data {
-    grid-area: d;
+    grid-area: e;
     @include wrapper-style;
 
     .container_sliders {
