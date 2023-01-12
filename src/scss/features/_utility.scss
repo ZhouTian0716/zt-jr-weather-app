@@ -10,4 +10,12 @@
   gap: var(--gap, 1rem);
 }
 
-
+.glass_card {
+  background: linear-gradient(
+    to right bottom,
+    var(--bg-gd-two),
+    var(--bg-gd-one)
+  );
+  // background: transparent;
+  backdrop-filter: blur(2px);
+}

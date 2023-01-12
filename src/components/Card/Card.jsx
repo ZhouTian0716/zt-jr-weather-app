@@ -13,7 +13,7 @@ const Card = ({ data }) => {
   const dispatch = useDispatch();
   return (
     <div
-      className={card}
+      className={`${card} glass_card`}
       onClick={() => {
         dispatch(setSelectedCity(city));
         dispatch(fetchWeatherByCity(city));

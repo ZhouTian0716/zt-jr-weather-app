@@ -1,6 +1,22 @@
 @use "../../scss/variables/" as *;
 @use "../../scss/features/" as *;
 
+[color-scheme="light"] {
+  --theme_img: url("../../assets/svg/weather-light.png");
+}
+
+[color-scheme="dark"] {
+  --theme_img: url("../../assets/svg/weather-dark.png");
+}
+
+@mixin card-title {
+  h3 {
+    font-weight: 700;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--bg-contrast);
+  }
+}
+
 .container {
   h3 {
     font-size: 1rem;
@@ -24,7 +40,8 @@
 
   .main_data {
     background-position: center center;
-    background-image: url("../../assets/svg/light.jpg");
+    background-image: var(--theme_img);
+
     grid-area: a;
     align-items: center;
     position: relative;
@@ -47,6 +64,7 @@
     h3 {
       font-size: 2rem;
       text-transform: uppercase;
+      text-align: center;
     }
     h2 {
       font-size: 3rem;
@@ -72,11 +90,13 @@
       width: 80%;
       display: flex;
       justify-content: space-between;
+
       .min {
         font-size: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+
         &::before {
           content: "▼";
           font-size: 0.4em;
@@ -93,6 +113,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
         &::before {
           content: "▲";
           font-size: 0.4em;
@@ -113,21 +134,27 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include media-mobile-lg {
+          line-height: 1.5em;
+        }
       }
     }
   }
-  
+
   .today_details {
     grid-area: b;
+    @include card-title;
     @include wrapper-style;
     @include list-styles;
   }
   .today_forecast {
+    @include card-title;
     grid-area: c;
     @include wrapper-style;
     @include list-styles;
   }
   .days_data {
+    @include card-title;
     grid-area: d;
     @include wrapper-style;
     @include list-styles;
@@ -145,6 +172,7 @@
   }
   .hourly_data {
     grid-area: e;
+    @include card-title;
     @include wrapper-style;
 
     .container_sliders {
@@ -158,10 +186,15 @@
         height: 5px;
       }
       &::-webkit-scrollbar-track {
-        background: var(--bg-contrast);
+        background: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background: var(--text-main);
+        background: linear-gradient(
+          to right,
+          var(--text-main),
+          var(--text-accent)
+        );
+        border-radius: 2.5px;
       }
       .hourly_condition {
         display: flex;

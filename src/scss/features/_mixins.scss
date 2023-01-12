@@ -1,4 +1,5 @@
 @mixin wrapper-style {
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,4 +9,12 @@
   // li{
   //   font-size:0.5rem;
   // }
+}
+
+
+@mixin text-gradient-style{
+  background: -webkit-linear-gradient(85deg,var(--text-main), var(--text-main-b));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

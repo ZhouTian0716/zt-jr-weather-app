@@ -141,7 +141,7 @@ const MyCity = () => {
             </span>
           </div>
         </div>
-        <div className={today_details}>
+        <div className={`${today_details} glass_card`}>
           <h3>Today Details</h3>
           <ul>
             <li>
@@ -162,7 +162,7 @@ const MyCity = () => {
             </li>
           </ul>
         </div>
-        <div className={today_forecast}>
+        <div className={`${today_forecast} glass_card`}>
           <h3>Today Forecast</h3>
           <ul>
             <li>
@@ -174,7 +174,7 @@ const MyCity = () => {
               <span>{weatherData.forecast.forecastday[0].astro.sunset}</span>
             </li>
             <li>
-              <span>Moon Phase</span>
+              <span>Moon</span>
               <span>
                 {weatherData.forecast.forecastday[0].astro.moon_phase}
               </span>
@@ -187,7 +187,7 @@ const MyCity = () => {
             </li>
           </ul>
         </div>
-        <div className={days_data}>
+        <div className={`${days_data} glass_card`}>
           <h3>7 Days Forecast</h3>
           <ul>
             {daysData.map((e, i) => (
@@ -200,7 +200,7 @@ const MyCity = () => {
             ))}
           </ul>
         </div>
-        <div className={hourly_data}>
+        <div className={`${hourly_data} glass_card`}>
           <h3>Hourly Forecast</h3>
           <div className={container_sliders}>
             {hoursData.map((e, i) => (

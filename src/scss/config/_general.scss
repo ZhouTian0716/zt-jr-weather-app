@@ -1,14 +1,26 @@
 @use "../variables" as *;
+@use "../features" as *;
 
-body {
-  background-color: var(--bg);
+
+[color-scheme="light"] {
+  --bg-img: url("../src/assets/img/bg-light.webp");
 }
 
+[color-scheme="dark"] {
+  --bg-img: url("../src/assets/img/bg-dark.png");
+}
+
+
 #root {
+  background-image: var(--bg-img);
+  
+  
+  min-height: 100vh;
   color: var(--text-main);
-  width: 100vw;
+
+  width: 100%;
   max-width: 1200px;
-  // min-height: 100vh;
+
   padding: 1rem;
   margin: 0 auto;
   display: flex;
@@ -16,4 +28,10 @@ body {
   align-items: center;
   gap: 1rem;
   font-family: var(--a);
+}
+
+h1,
+h2,
+h3 {
+  @include text-gradient-style
 }

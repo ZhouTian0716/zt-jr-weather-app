@@ -1,9 +1,9 @@
 @use "../../scss/variables/" as *;
 
 .home {
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   align-items: center;
+  gap: 2rem;
 }

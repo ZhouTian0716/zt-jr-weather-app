@@ -1,28 +1,40 @@
 $light-tp: rgba(255, 255, 255, 0.15);
+$light-gd-one: hsl(181, 100%, 95%, 0.1);
+$light-gd-two: hsla(181, 100%, 90%, 0.1);
 $dark-tp: rgba(0, 0, 0, 0.15);
+$dark-gd-one: hsl(45, 97%, 15%, 0.1);
+$dark-gd-two: hsl(45, 97%, 10%, 0.1);
 
 //Colors from huemint
 // Lighte palette
 $light-bg: hsl(0, 0%, 100%);
 $light-text-main: hsl(257, 78%, 53%);
+$light-text-main-b: hsl(257, 78%, 70%);
 $light-text-accent: hsl(181, 100%, 77%);
 
 // Dark palette
-$dark-bg: hsl(289, 36%, 15%);
-$dark-text-main: hsl(48, 81%, 85%);
-$dark-text-accent: hsl(46, 14%, 34%);
+$dark-bg: 	hsl(60, 100%, 1%);
+$dark-text-main: 	hsl(37, 74%, 88%);
+$dark-text-main-b: 	hsl(37, 74%, 70%);
+$dark-text-accent: hsl(45, 97%, 51%);
 
 $colors-light: (
   bg-contrast: $dark-tp,
+  bg-gd-one: $light-gd-one,
+  bg-gd-two: $light-gd-two,
   bg: $light-bg,
   text-main: $light-text-main,
+  text-main-b: $light-text-main-b,
   text-accent: $light-text-accent,
 );
 
 $colors-dark: (
   bg-contrast: $light-tp,
+  bg-gd-one: $dark-gd-one,
+  bg-gd-two: $dark-gd-two,
   bg: $dark-bg,
   text-main: $dark-text-main,
+  text-main-b: $dark-text-main-b,
   text-accent: $dark-text-accent,
 );
 
@@ -37,5 +49,3 @@ $colors-dark: (
     --#{$name}: #{$color};
   }
 }
-
-

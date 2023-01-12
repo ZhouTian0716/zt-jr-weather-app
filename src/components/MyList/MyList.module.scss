@@ -26,10 +26,15 @@
       height: 5px;
     }
     &::-webkit-scrollbar-track {
-      background: var(--bg-contrast);
+      background: transparent;
     }
     &::-webkit-scrollbar-thumb {
-      background: var(--text-main);
+      background: linear-gradient(
+          to right,
+          var(--text-main),
+          var(--text-accent)
+        );
+        border-radius: 2.5px;
     }
     .message {
       // position: absolute;

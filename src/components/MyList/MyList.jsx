@@ -30,9 +30,11 @@ const MyList = () => {
     <div className={container}>
       {myListWeather.length > 0 ? (
         <h2 className={list_title}>My City List</h2>
+        
       ) : (
         <h2 className={list_notice}>No City Saved Yet, Start by Clicking ⭐</h2>
       )}
+       
 
       <div className={slider_cities}>{content}</div>
     </div>
