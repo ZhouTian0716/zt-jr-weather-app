@@ -8,7 +8,10 @@ import {
   clearSearch,
 } from "../../redux/reducers/searchSlice";
 import { searchModalToggle } from "../../redux/reducers/displaySlice";
-import { setSelectedCity,fetchWeatherByCity } from "../../redux/reducers/weatherSlice";
+import {
+  setSelectedCity,
+  fetchWeatherByCity,
+} from "../../redux/reducers/weatherSlice";
 
 // Styles
 import styles from "./Tabs.module.scss";
@@ -20,38 +23,33 @@ const Tabs = () => {
   //   const citiesFromStore = useSelector(getSearchResults);
   //   const [cities,setCities]=useState(citiesFromStore)
 
-  const Status = useSelector(getSearchStatus);
+  const searchStatus = useSelector(getSearchStatus);
 
   const dispatch = useDispatch();
 
-
-
-  const onSearchByCity=(city)=>{
+  const onSearchByCity = (city) => {
     dispatch(clearSearch());
     dispatch(searchModalToggle());
     dispatch(setSelectedCity(city));
     dispatch(fetchWeatherByCity(city));
     //
-  }
+  };
+
+  const notFound = searchStatus === "succeeded" && cities.length === 0;
+  const loading = searchStatus === "loading";
 
   return (
     <div className={container}>
-      {cities ? (
+      {cities.length > 0 &&
         cities.map((city, i) => (
-          <p
-            className={tab}
-            key={i}
-            onClick={()=>onSearchByCity(city)}
-          >
+          <p className={tab} key={i} onClick={() => onSearchByCity(city)}>
             <span className={tab__city}>{city.name},</span>
             <span className={tab__region}>{city.region},</span>
             <span className={tab__country}>{city.country}</span>
           </p>
-        ))
-      ) : (
-        <p>City Not Found</p>
-      )}
-      
+        ))}
+      {notFound && <p className={tab}>City Not Found</p>}
+      {loading && <p className={tab}>Loading on your search</p>}
     </div>
   );
 };

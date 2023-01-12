@@ -5,6 +5,7 @@ import styles from "./Search.module.scss";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
+  setSearchStatus,
   getSearchStatus,
   fetchCities,
   clearSearch,
@@ -27,6 +28,7 @@ const Search = () => {
   const handleClear = () => {
     setKeyword("");
     dispatch(clearSearch());
+    dispatch(setSearchStatus('idle'));
   };
 
   return (

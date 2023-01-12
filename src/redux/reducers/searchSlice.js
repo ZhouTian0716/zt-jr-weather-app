@@ -24,8 +24,11 @@ export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
+    setSearchStatus: (state, action) => {
+      state.status = action.payload;
+    },
     clearSearch: (state, action) => {
-      state.cities=[];
+      state.cities = [];
     },
   },
   extraReducers(builder) {
@@ -47,7 +50,7 @@ export const searchSlice = createSlice({
 });
 
 // Action creators are generated for each case of reducers
-export const { clearSearch } = searchSlice.actions;
+export const { setSearchStatus, clearSearch } = searchSlice.actions;
 
 // This is easier for component to call useSelector, if our state shape change in the future
 export const getSearchResults = (state) => state.search.cities;
