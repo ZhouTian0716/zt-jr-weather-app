@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 // Redux Hooks
 import { useSelector, useDispatch } from "react-redux";
 import {
+  setSearchStatus,
   getSearchResults,
   getSearchStatus,
   clearSearch,
@@ -29,6 +30,7 @@ const Tabs = () => {
 
   const onSearchByCity = (city) => {
     dispatch(clearSearch());
+    dispatch(setSearchStatus('idle'));
     dispatch(searchModalToggle());
     dispatch(setSelectedCity(city));
     dispatch(fetchWeatherByCity(city));
