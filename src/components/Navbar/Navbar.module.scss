@@ -16,6 +16,9 @@
   .title {
     font-size: 1.5em;
     cursor: pointer;
+    @include media-mobile-lg {
+      font-size: 1em;
+    }
   }
   .search__btn {
     font-size: 2em;
