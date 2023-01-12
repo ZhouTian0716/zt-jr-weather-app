@@ -46,6 +46,7 @@ const MyCity = () => {
 
   // 👻👻👻👻👻
   // Common needed variable
+  // IMPORTANT NOTE: weatherapi 返回的location对象包含请求时的具体时间，在我的compare城市是否存在于localstorage里面的逻辑不需要这个时间，所以在此重构一个cityLocation！
   const cityLocation = {
     name: weatherBySelectedCity?.location.name || localWeather?.location.name,
     lat: weatherBySelectedCity?.location.lat || localWeather?.location.lat,

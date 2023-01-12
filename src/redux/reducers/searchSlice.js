@@ -8,7 +8,7 @@ const Search_Route = `/search.json?key=${API_KEY}`;
 
 const initialState = {
   cities: [],
-  status: "idle", //'idle' | 'fetching' | 'succeeded' | 'failed'
+  status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
@@ -31,7 +31,7 @@ export const searchSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCities.pending, (state, action) => {
-        state.status = "fetching";
+        state.status = "loading";
       })
       .addCase(fetchCities.fulfilled, (state, action) => {
         state.status = "succeeded";

@@ -3,20 +3,25 @@ import { HiX } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import styles from "./Search.module.scss";
 // Redux
-import { useDispatch } from "react-redux";
-import { fetchCities, clearSearch } from "../../redux/reducers/searchSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getSearchStatus,
+  fetchCities,
+  clearSearch,
+} from "../../redux/reducers/searchSlice";
 
 const Search = () => {
   const { container, wrapper, search__input, clear__btn } = styles;
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
-
+  const searchStatus = useSelector(getSearchStatus);
   const handleSearch = (e) => {
     setKeyword(e.target.value);
   };
 
   useEffect(() => {
-    keyword.length && dispatch(fetchCities(keyword));
+    if (searchStatus !== "loading")
+      keyword.length && dispatch(fetchCities(keyword));
   }, [keyword]);
 
   const handleClear = () => {
