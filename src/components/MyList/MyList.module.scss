@@ -30,11 +30,12 @@
     }
     &::-webkit-scrollbar-thumb {
       background: linear-gradient(
-          to right,
-          var(--text-main),
-          var(--text-accent)
-        );
-        border-radius: 2.5px;
+        to right,
+        var(--text-accent),
+        var(--text-main),
+        var(--text-accent)
+      );
+      border-radius: 2.5px;
     }
     .message {
       // position: absolute;

@@ -1,7 +1,9 @@
 @use "../variables" as *;
 @use "../features" as *;
 
-
+// Note:
+// Our style root file is index.scss in scss folder
+// so the relative path starts from there
 [color-scheme="light"] {
   --bg-img: url("../assets/img/bg-light.webp");
 }

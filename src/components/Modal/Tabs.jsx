@@ -29,12 +29,18 @@ const Tabs = () => {
   const dispatch = useDispatch();
 
   const onSearchByCity = (city) => {
-    dispatch(clearSearch());
-    dispatch(setSearchStatus('idle'));
-    dispatch(searchModalToggle());
-    dispatch(setSelectedCity(city));
-    dispatch(fetchWeatherByCity(city));
-    //
+    try {
+      // The only async action here
+      dispatch(fetchWeatherByCity(city)).unwrap();
+    } catch (err) {
+      console.log("Failed to fetch selected city weather", err);
+    } finally {
+      // UI Changes, all sync actions
+      dispatch(clearSearch());
+      dispatch(searchModalToggle());
+      dispatch(setSelectedCity(city));
+      dispatch(setSearchStatus("idle"));
+    }
   };
 
   const notFound = searchStatus === "succeeded" && cities.length === 0;
