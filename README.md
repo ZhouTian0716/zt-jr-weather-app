@@ -6,4 +6,4 @@ Open issues:
 5.Responsive Design
 6.initial deploy to vercel
 7.Final test on mobile
-8.checking
+
