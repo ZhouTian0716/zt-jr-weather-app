@@ -1,12 +1,12 @@
 import Tabs from "./Tabs";
 import { HiX } from "react-icons/hi";
-import { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
+import useDebounce from "../../hooks/useDebounce";
 import styles from "./Search.module.scss";
 // Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setSearchStatus,
-  getSearchStatus,
   fetchCities,
   clearSearch,
 } from "../../redux/reducers/searchSlice";
@@ -14,21 +14,23 @@ import {
 const Search = () => {
   const { container, wrapper, search__input, clear__btn } = styles;
   const [keyword, setKeyword] = useState("");
+  const debouncedKeywords = useDebounce(keyword, 500);
+
   const dispatch = useDispatch();
-  const searchStatus = useSelector(getSearchStatus);
   const handleSearch = (e) => {
     setKeyword(e.target.value);
   };
 
   useEffect(() => {
-    if (searchStatus !== "loading")
-      keyword.length && dispatch(fetchCities(keyword));
-  }, [keyword]);
+    if (keyword.length) {
+      dispatch(fetchCities(debouncedKeywords));
+    }
+  }, [debouncedKeywords]);
 
   const handleClear = () => {
     setKeyword("");
     dispatch(clearSearch());
-    dispatch(setSearchStatus('idle'));
+    dispatch(setSearchStatus("idle"));
   };
 
   return (
